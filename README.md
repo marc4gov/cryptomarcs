@@ -50,11 +50,11 @@ Then run RandomCryptoMarc contract with the following command
 npx hardhat request-random-crypto-marc --contract 0xBed46e9C277F71419E02A23Bb795Deda5E876B17 --network kovan
 ```
 
-Now you can use the hardhat commands in the `tasks` directory to get new RandomCryptoMarcs and do API calls. API-endpoint is `https://competenties.fnctn.nl/api/OP-<number>` and PATH is `essentialCompetences.0.code`. Be sure to have both contracts funded with LINK. And generate at least 15 RandomCryptoMarcs before continuing.
+Now you can use the hardhat commands in the `tasks` directory to get new RandomCryptoMarcs and do API calls. API-endpoint is `https://competenties.fnctn.nl/api/OP-<number>` and PATH is `essentialCompetences.0.code`. Make sure to have both contracts (`RandomCryproMarc` and `APIConsumer`) funded with LINK. And generate at least 15 RandomCryptoMarcs before moving on.
 
 ## Image Generation
 
-The second part is about generating the images for the RandomCryptoMarcs, using the HashLips Art Engine, primarily in `src/main.js`. I altered some funtions to accomodate for the random number generation, as input to the layering of the resulting images. Main function is `startCreating` where the call to the RandomCryptoMarc contract is made. Set the contract addresses to the deployed ones. According to the layer config in `src/config.js` this command wil generate a number of images and corresponding metadata json-files in the `build` directory, like so:
+The second part is about generating the images for the RandomCryptoMarcs, using the HashLips Art Engine, primarily in `src/main.js`. I altered some functions to accomodate for the random number generation, as input to the layering of the resulting images. Main function is `startCreating` where the call to the RandomCryptoMarc contract is made and the resulting random numbers are compared to the weight of the layers. Set the contract addresses to your corresponding deployed ones. According to the layer config in `src/config.js` the next command wil generate a number of images and corresponding metadata JSON files in the `build` directory, like so:
 
 ```bash
 npm run build2
@@ -113,7 +113,7 @@ Token URI set with tx hash:  0x216100d7e6e370d08b842d702af7e2888f67f2a2f20016c55
 
 TokenURI is now set to the hardcoded tokenid 2, adjust according to your preferences.
 
-As you can see, sometimes calling the API Consumer contract to get the right skill fails, maybe due to some congestion issues. Also the response could be lagging, as you cab check by filling in the number (like '15' above) in the actual Web2 API endpoint:
+As you can see, sometimes calling the API Consumer contract to get the right skill fails, maybe due to some congestion issues. Also the response could be lagging, check this by filling in the number (like '15' above) in the actual Web2 API endpoint:
 ``` bash
 curl https://competenties.fnctn.nl/api/OP-15
 ```

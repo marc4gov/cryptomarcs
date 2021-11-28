@@ -455,6 +455,7 @@ function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// need to wait for the API Consumer contract to show the correct value
 async function sleep(fn, ...args) {
   await timeout(120000);
   return fn(...args);
@@ -579,6 +580,7 @@ const createBreed = async (traits1, traits2, skills1, skills2, contractAddr, arg
   addMetadata(newDna, name, IpfsHash, traits, skillsAPI);
   saveMetaDataSingleFile(name);
   const Ipfs2 = await saveJSONToIPFS(name);
+  // RandomCryptoMarc contract is 0x048CEa05C2Fc3157d3a487679167901a56946724
   await setTokenURI("0x048CEa05C2Fc3157d3a487679167901a56946724", 2, Ipfs2);
 }
 
@@ -598,6 +600,7 @@ const setTokenURI = async(contractAddr, tokenid, ipfshash) => {
   console.log("Token URI set with tx hash: ", tx.hash)
 }
 
+// RandomCryptoMarc contract is 0x048CEa05C2Fc3157d3a487679167901a56946724
 const startCreating = async () => {
   let layerConfigIndex = 0;
   let editionCount = 1;
@@ -606,6 +609,8 @@ const startCreating = async () => {
   let traits = []
   let skills = []
   let count = 1;
+
+  // get random numbers from the Chainlink VRF
   randomNumbers = await getRandomNumbers("0x048CEa05C2Fc3157d3a487679167901a56946724")
   while (layerConfigIndex < layerConfigurations.length) {
     const layers = layersSetup(

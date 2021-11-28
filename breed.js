@@ -21,6 +21,7 @@ console.log('skills2: ', skills2);
 // check traits and skills
 console.log('Mixing and randomizing traits & skills:');
 
+// API Consumer contract is 0x5C006617eC722Ff755387CfB4363F720D40afD70
 (() => {
   createBreed(traits1, traits2, skills1, skills2, "0x5C006617eC722Ff755387CfB4363F720D40afD70", myArgs);
 })();
