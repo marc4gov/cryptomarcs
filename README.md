@@ -18,7 +18,7 @@ yarn
 npm install
 ```
 
-Then, make a .env file with the following:
+Then, make a `.env` file with the following:
 
 ```javascript
 KOVAN_RPC_URL='your kovan rpc url'
